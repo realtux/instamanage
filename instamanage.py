@@ -84,7 +84,7 @@ def menu():
 
         unfollow_delay = (min_to_unfollow * 60) / num_unfollow
 
-        print 'unfollow rate set at once every %i seconds' % unfollow_delay
+        print 'unfollow rate set at once every %i-%i seconds' % (unfollow_delay, unfollow_delay + 7)
 
     if choice:
         if int(choice) == 1:
@@ -296,6 +296,9 @@ def load_sync():
     left_to_unfollow = num_unfollow
 
     for id in unfollow_list:
+        if left_to_unfollow == 0:
+            break
+
         print 'unfollowing %s' % id
 
         unfollow = session.post(url_unfollow % id)
@@ -319,10 +322,10 @@ def load_sync():
         json.dump(user_state, fp, indent=4, sort_keys=True)
         fp.close()
 
-        if left_to_unfollow == 0:
-            break
+        calculated_delay = int(((unfollow_delay + 7) - unfollow_delay) * random.random() + unfollow_delay)
+        print 'sleeping %i seconds' % calculated_delay
+        time.sleep(calculated_delay)
 
-        time.sleep(unfollow_delay)
         left_to_unfollow -= 1
 
 
