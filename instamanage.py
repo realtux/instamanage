@@ -274,6 +274,10 @@ def start_sync():
 
 
 def load_sync():
+    if not os.path.isfile('state.json'):
+        print 'no state.json to load, please run a sync with option 1 or 2'
+        quit()
+
     fp = open('state.json', 'r')
     user_state = json.load(fp)
     fp.close()
