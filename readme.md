@@ -14,6 +14,6 @@ cp config_sample.json config.json
 python instamanage.py
 ```
 
-### maximum action rates observed
-- likes: 1000 daily, unlimited hourly
-- unfollow: 140 daily, 65 hourly
+### maximum action rates observed without temp/perm ban
+- likes: 1000 daily, 500 hourly
+- unfollow: 200 daily, 65 hourly
